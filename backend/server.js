@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    // origin: "http://localhost:3000",
     origin: "https://linkedin-clone-d2f7.onrender.com",
     credentials: true,
   })
