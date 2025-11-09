@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:3000",
-      "https://your-frontend-domain.vercel.app",
+      "https://linkedin-clone-d2f7.onrender.com",
     ],
     credentials: true,
   })
