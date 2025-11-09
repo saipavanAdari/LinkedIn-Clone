@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
-const Post = require("../models/Post");
+import mongoose from "mongoose";
+import Post from "../models/Post.js";
 
-exports.getAllPosts = async (req, res) => {
+export const getAllPosts = async (req, res) => {
   try {
     const limit = Math.min(Number(req.query.limit) || 50, 200);
     const skip = Number(req.query.skip) || 0;
@@ -20,7 +20,7 @@ exports.getAllPosts = async (req, res) => {
   }
 };
 
-exports.createPost = async (req, res) => {
+export const createPost = async (req, res) => {
   try {
     const { text, imageUrl } = req.body;
     if (!text || !text.trim())
@@ -33,7 +33,10 @@ exports.createPost = async (req, res) => {
     });
 
     await post.save();
-    const populated = await Post.findById(post._id).populate("user", "name email");
+    const populated = await Post.findById(post._id).populate(
+      "user",
+      "name email"
+    );
     res.status(201).json(populated);
   } catch (err) {
     console.error("Create post error:", err);
@@ -41,7 +44,7 @@ exports.createPost = async (req, res) => {
   }
 };
 
-exports.deletePost = async (req, res) => {
+export const deletePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: "Post not found" });
@@ -57,7 +60,7 @@ exports.deletePost = async (req, res) => {
   }
 };
 
-exports.editPost = async (req, res) => {
+export const editPost = async (req, res) => {
   try {
     const { text } = req.body;
     const post = await Post.findById(req.params.id);
@@ -83,7 +86,7 @@ exports.editPost = async (req, res) => {
   }
 };
 
-exports.likePost = async (req, res) => {
+export const likePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     if (!post) return res.status(404).json({ message: "Post not found" });
@@ -108,7 +111,7 @@ exports.likePost = async (req, res) => {
   }
 };
 
-exports.commentOnPost = async (req, res) => {
+export const commentOnPost = async (req, res) => {
   try {
     const { text } = req.body;
     if (!text || !text.trim())

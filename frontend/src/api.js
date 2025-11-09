@@ -1,14 +1,10 @@
 import axios from "axios";
 
 const API = axios.create({
-  // baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
   baseURL: "https://linkedin-clone1-vr3g.onrender.com/api",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // baseURL: "http://localhost:5000/api",
+  withCredentials: true,
 });
-
-// Attach token if present
 API.interceptors.request.use(
   (config) => {
     const stored = sessionStorage.getItem("auth");
