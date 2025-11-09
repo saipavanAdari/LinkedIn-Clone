@@ -61,14 +61,14 @@ PORT=5000
  
 Open two terminals
 
-For frontend 
->cd frontend
->npm start
+## For frontend 
+->cd frontend
+->npm start
 
-For Backend
->cd backend
->npm install express Mongoose bcryptjs CORS
->npm start 
+## For Backend
+->cd backend
+->npm install express Mongoose bcryptjs CORS
+->npm start 
 
 {- Express.js
 - MongoDB (Mongoose)
